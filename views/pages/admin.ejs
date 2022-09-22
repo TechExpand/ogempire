@@ -98,6 +98,7 @@
                 </ul>
               </li> -->
               <li><a href="/contact">Contact</a></li>
+              <div class="select d-inline-block w-auto ml-xl-3" id="google_translate_element"></div>
             </ul>
             <div class="nav-right">
               <ul class="account-menu ml-3">
@@ -105,7 +106,7 @@
                   <a href="/login"><i class="las la-user"></i></a>
                 </li>
               </ul> 
-             <div class="select d-inline-block w-auto ml-xl-3" id="google_translate_element"></div>
+            
             </div>
           </div> 
         </nav>
@@ -159,6 +160,12 @@
 
               <a href="/sendmail">
                 <button type="btn" value="submit" class="cmn-btn" id="btnClr">Send Email</button>
+              </a>
+
+
+
+              <a href="/login">
+                <button type="btn" onclick="logout()" value="submit" class="cmn-btn" id="btnClr">Log out</button>
               </a>
 
              
@@ -311,6 +318,12 @@
   </script>
   <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+
+  <script>
+  function  logout(){
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    }
+  </script>
 
   <script src="/js/vendor/jquery-3.5.1.min.js"></script>
   <!-- bootstrap js -->

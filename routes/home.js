@@ -255,29 +255,55 @@ router.post("/login", function (req, res, next) {
                                             res.cookie("user", user._id, { expires: time })
                                               
 
-                                            if(user.email === "ogdavid@gmail.com"){
+                                            if(user.email === "speedsterfxweb@gmail.com"){
                                                 res.cookie("isadmin", true, { expires: time })
+
+
+                                                Profile.find({}).then(function(prof){
+                                                    res.render('pages/admin', {
+                                                        id: user._id,
+                                                        email: user.email,
+                                                        prof: prof,
+                                                        fullname: profile[0].name,
+                                                        amount: profile[0].amount,
+                                                        image: profile[0].image,
+                                                        totalDeposit: profile[0].totalDeposit,
+                                                        totalProfit: profile[0].totalProfit,
+                                                        totalWithdraw: profile[0].totalWithdraw,
+                                                        referalEarn: profile[0].referalEarn,
+                                                        current: page,
+                                                        pages: Math.ceil(count / perPage)
+                            
+                                                    });
+                                                   })
+                                                
+
+                                                
                                             }else{
                                                 res.cookie("isadmin", false, { expires: time })
+                                                
+
+                                                res.render('pages/dashboard', {
+                                                    id: user._id,
+                                                    token: token,
+                                                    transaction: transaction,
+                                                    email: user.email,
+                                                    fullname: profile[0].name,
+                                                    amount: profile[0].amount,
+                                                    image: profile[0].image,
+                                                    totalDeposit: profile[0].totalDeposit,
+                                                    totalProfit: profile[0].totalProfit,
+                                                    totalWithdraw: profile[0].totalWithdraw,
+                                                    referalEarn: profile[0].referalEarn,
+                                                    current: page,
+                                                    pages: Math.ceil(count / perPage),
+    
+                                                })
+                                        
                                             }
                                             // let cookies = req.cookies.obj;
 
-                                            res.render('pages/dashboard', {
-                                                id: user._id,
-                                                token: token,
-                                                transaction: transaction,
-                                                email: user.email,
-                                                fullname: profile[0].name,
-                                                amount: profile[0].amount,
-                                                image: profile[0].image,
-                                                totalDeposit: profile[0].totalDeposit,
-                                                totalProfit: profile[0].totalProfit,
-                                                totalWithdraw: profile[0].totalWithdraw,
-                                                referalEarn: profile[0].referalEarn,
-                                                current: page,
-                                                pages: Math.ceil(count / perPage),
-
-                                            })
+                                           
 
                                         });
                                     });
@@ -458,6 +484,26 @@ router.get('/dashboard/:page', islogin, function (req, res) {
                 .limit(perPage).exec(function (err, transaction) {
                     if (err) throw err;
                     Transaction.countDocuments({}).exec((err, count) => {
+
+                        if(user.email === "speedsterfxweb@gmail.com"){
+                           Profile.find({}).then(function(prof){
+                            res.render('pages/admin', {
+                                id: user._id,
+                                email: user.email,
+                                prof: prof,
+                                fullname: profile[0].name,
+                                amount: profile[0].amount,
+                                image: profile[0].image,
+                                totalDeposit: profile[0].totalDeposit,
+                                totalProfit: profile[0].totalProfit,
+                                totalWithdraw: profile[0].totalWithdraw,
+                                referalEarn: profile[0].referalEarn,
+                                current: page,
+                                pages: Math.ceil(count / perPage)
+    
+                            });
+                           })
+                        }else{
                         res.render('pages/dashboard', {
                             id: user._id,
                             email: user.email,
@@ -473,6 +519,7 @@ router.get('/dashboard/:page', islogin, function (req, res) {
                             pages: Math.ceil(count / perPage)
 
                         });
+                        }
 
                     });
                 });
@@ -495,27 +542,34 @@ router.get('/admin/:page', islogin, function (req, res) {
                     console.log(profile)
                     if (err) throw err;
                     Profile.countDocuments({}).exec((err, count) => {
-                        res.render('pages/admin', {
-                            id: user._id,
-                            email: user.email,
-                            prof: prof,
-                            fullname: profile[0].name,
-                            amount: profile[0].amount,
-                            image: profile[0].image,
-                            totalDeposit: profile[0].totalDeposit,
-                            totalProfit: profile[0].totalProfit,
-                            totalWithdraw: profile[0].totalWithdraw,
-                            referalEarn: profile[0].referalEarn,
-                            current: page,
-                            pages: Math.ceil(count / perPage)
 
-                        });
+
+                        Profile.find({}).then(function(profs){
+                            res.render('pages/admin', {
+                                id: user._id,
+                                email: user.email,
+                                prof: profs,
+                                fullname: profile[0].name,
+                                amount: profile[0].amount,
+                                image: profile[0].image,
+                                totalDeposit: profile[0].totalDeposit,
+                                totalProfit: profile[0].totalProfit,
+                                totalWithdraw: profile[0].totalWithdraw,
+                                referalEarn: profile[0].referalEarn,
+                                current: page,
+                                pages: Math.ceil(count / perPage)
+    
+                            });
+                           })
+
+                       
 
                     });
                 });
         })
     })
 });
+
 
 
 
@@ -530,6 +584,7 @@ router.get('/deposit', function (req, res) {
         }
     })
 });
+
 
 
 
@@ -640,10 +695,10 @@ router.post('/edit/:user', function (req, res) {
 
 
 router.get("/d/clear", function (req, res, next) {
-    User.find({})
+    Wallet.find({})
         .then(function (menus) {
             menus.map((v) => {
-                return User.findByIdAndDelete({ _id: v._id }).then(function (
+                return Wallet.findByIdAndDelete({ _id: v._id }).then(function (
                     menus
                 ) { });
             });

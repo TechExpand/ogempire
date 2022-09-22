@@ -9,10 +9,10 @@
     // const token = req.header('Authorization');
     const admin = req.cookies.isadmin;
 
-    if(admin){
-        next();
+    if(admin === true){
+        res.redirect("/admin/1")
     }else{
-        res.redirect("/dashboard/1")
+        next();
     }
 
     
