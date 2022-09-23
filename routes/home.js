@@ -645,8 +645,8 @@ router.post('/edit/:user', function (req, res) {
                                         to: profile.email,
                                         subject: 'SPEEDSTERFX',
                                         text: Number(profile.totalProfit)===Number(req.body.totalprofit)?
-                                        `Congratulations you just earned $${Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit:req.body.totalprofit} as profit for your investment with speedsterfx.`:
-                                        `Dear customer, your account have been successfully credited with $${Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit:req.body.totalprofit}.`
+                                        `Dear customer, your account have been successfully credited with $${Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit:req.body.totalprofit}.`:
+                                        `Congratulations you just earned $${Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit:req.body.totalprofit} as profit for your investment with speedsterfx.`
                                     };
     
     
