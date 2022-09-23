@@ -797,12 +797,12 @@ function getRandomString(length) {
 
 router.post("/reset", async (req, res, next) => {
     if (!validateEmail(req.body.email)) {
-      res.status(400).send({ message: "enter a valid email" });
+        res.render("pages/reset", { message: "user does not exist" })
     }
     User.findOne({ email: req.body.email })
       .then(function (user) {
         if (!user) {
-          res.status(400).send({ message: "user does not exist" });
+          res.render("pages/reset", { message: "user does not exist" })
         }
   
         let newPassword = getRandomString(8);
@@ -826,7 +826,7 @@ router.post("/reset", async (req, res, next) => {
 
                   transporter.sendMail(mailOptions, function (err, data) {
                     if (err) {
-                        console.log("Error " + err);
+                        res.render("pages/reset", { message: err.toString() })
                     } else {
                         res.render("pages/login")
                     }
