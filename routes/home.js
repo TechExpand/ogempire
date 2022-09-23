@@ -828,7 +828,7 @@ router.post("/reset", async (req, res, next) => {
                     if (err) {
                         res.render("pages/reset", { error: err.toString() })
                     } else {
-                        res.render("pages/reset", {message: "Your password have been sent to your mailbox"})
+                        res.render("pages/reset", {error: "Your password have been sent to your mailbox"})
                     }
                 });
 
