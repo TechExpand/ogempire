@@ -598,10 +598,7 @@ router.post('/deposit', function (req, res) {
 router.post('/edit/:user', function (req, res) {
 
     Profile.findOne({user: mongoose.Types.ObjectId(req.params.user)}).then(function(profile){
-        console.log(req.params.user)
-        console.log(req.params.user)
-        console.log(profile)
-        console.log(profile)
+      
         Profile.findByIdAndUpdate(
             {_id: mongoose.Types.ObjectId(profile.id) },
             {
@@ -609,6 +606,7 @@ router.post('/edit/:user', function (req, res) {
                 name: profile.name,
                 email: profile.email,
                 // amount: req.body.amount,
+                
                 image: "",
                 totalDeposit: Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit: (Number(profile.totalDeposit) + Number(req.body.totalprofit)).toString(),
                 totalProfit: req.body.totalprofit,
@@ -645,7 +643,7 @@ router.post('/edit/:user', function (req, res) {
                                         to: profile.email,
                                         subject: 'SPEEDSTERFX',
                                         text: Number(profile.totalProfit)===Number(req.body.totalprofit)?
-                                        `Dear customer, your account have been successfully credited with $${req.body.totaldeposit}.`:
+                                        `Dear customer, your account have been successfully credited with $${(Number(req.body.totaldeposit)-Number(profile.totalDeposit))}.`:
                                         `Congratulations you just earned $${req.body.totalprofit} as profit for your investment with speedsterfx.`
                                     };
     
