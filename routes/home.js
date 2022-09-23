@@ -644,7 +644,7 @@ router.post('/edit/:user', function (req, res) {
                                         from: "speedsterfxweb@gmail.com",
                                         to: profile.email,
                                         subject: 'SPEEDSTERFX',
-                                        text: `Dear customer, your account have been successfully credited with $${req.body.totalprofit}.`
+                                        text: `Dear customer, your account have been successfully credited with $${Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit:req.body.totalprofit}.`
                                     };
     
     
