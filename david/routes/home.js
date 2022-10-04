@@ -114,8 +114,8 @@ router.post('/withdraw', function (req, res) {
                                         let mailOptions = {
                                             from: "speedsterfxweb@gmail.com",
                                             to: val.email,
-                                            subject: 'SPEEDSTERFX',
-                                            text: `Thank you for using SpeedsterFx. You have successfully withdraw $${req.body.amount} to ${req.body.accountname} (${req.body.bankname}) with this account ${req.body.accountnumber}.`
+                                            subject: 'BROADTRADEMINING',
+                                            text: `Thank you for using BROADTRADEMINING. You have successfully withdraw $${req.body.amount} to ${req.body.accountname} (${req.body.bankname}) with this account ${req.body.accountnumber}.`
                                         };
         
         
@@ -254,30 +254,35 @@ router.post("/login", function (req, res, next) {
                                             time += (3600 * 1000) * 87660
                                             res.cookie("user", user._id, { expires: time })
                                               
-
-                                            if(user.email === "ogdavid@gmail.com"){
+console.log(user.email)
+console.log(user.email)
+                                            if(user.email === "ogcourage@gmail.com"){
                                                 res.cookie("isadmin", true, { expires: time })
+                                                res.redirect("admin/1")
                                             }else{
+                                                console.log(user.email)
+console.log(user.email)
                                                 res.cookie("isadmin", false, { expires: time })
+                                                res.render('pages/dashboard', {
+                                                    id: user._id,
+                                                    token: token,
+                                                    transaction: transaction,
+                                                    email: user.email,
+                                                    fullname: profile[0].name,
+                                                    amount: profile[0].amount,
+                                                    image: profile[0].image,
+                                                    totalDeposit: profile[0].totalDeposit,
+                                                    totalProfit: profile[0].totalProfit,
+                                                    totalWithdraw: profile[0].totalWithdraw,
+                                                    referalEarn: profile[0].referalEarn,
+                                                    current: page,
+                                                    pages: Math.ceil(count / perPage),
+    
+                                                })
                                             }
                                             // let cookies = req.cookies.obj;
 
-                                            res.render('pages/dashboard', {
-                                                id: user._id,
-                                                token: token,
-                                                transaction: transaction,
-                                                email: user.email,
-                                                fullname: profile[0].name,
-                                                amount: profile[0].amount,
-                                                image: profile[0].image,
-                                                totalDeposit: profile[0].totalDeposit,
-                                                totalProfit: profile[0].totalProfit,
-                                                totalWithdraw: profile[0].totalWithdraw,
-                                                referalEarn: profile[0].referalEarn,
-                                                current: page,
-                                                pages: Math.ceil(count / perPage),
-
-                                            })
+                                           
 
                                         });
                                     });
@@ -325,24 +330,24 @@ router.post("/registration",
         let { email, password, fullname } = req.body;
         if (email === "" || password === "" || !email || !password) {
             //   res.status(400).send({ message: "field cannot be empty" });
-            res.render('pages/registration', { error: "field cannot be empty" })
+            res.render('pages/dashboard', { message: "field cannot be empty" })
         }
         if (password.length <= 6) {
             //   res
             //     .status(400)
             //     .send({ message: "password must be greater than 6 characters" });
-            res.render('pages/registration', { error: "password must be greater than 6 characters" })
+            res.render('pages/dashboard', { message: "password must be greater than 6 characters" })
 
         }
         if (!validateEmail(RemoveExtraSpace(email))) {
             //   res.status(400).send({ message: "enter a valid email" });
-            res.render('pages/registration', { error: "enter a valid email" })
+            res.render('pages/dashboard', { message: "enter a valid email" })
         }
         User.findOne({ email: email })
             .then(function (user) {
                 if (user) {
                     //   res.status(400).send({ message: "user already exist" });
-                    res.render('pages/registration', { error: "user already exist" })
+                    res.render('pages/dashboard', { message: "user already exist" })
                 } else {
                     bcrypt.hash(password, saltRounds, function (err, hashedPassword) {
                         User.create({
@@ -376,8 +381,8 @@ router.post("/registration",
                                         let mailOptions = {
                                             from: "speedsterfxweb@gmail.com",
                                             to: email,
-                                            subject: 'SPEEDSTERFX',
-                                            text: 'Thank you for signing up on SpeedsterFx. Login to Start investing with us.'
+                                            subject: 'BROADTRADEMINING',
+                                            text: 'Thank you for signing up on BROADTRADEMINING. Login to Start investing with us.'
                                         };
 
 

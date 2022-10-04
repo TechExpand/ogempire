@@ -12,7 +12,7 @@
     if(user){
         next();
     }else{
-        res.redirect("/login")
+        res.render('pages/home', {message: "pop"})
     }
 
     

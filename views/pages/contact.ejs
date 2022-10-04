@@ -1,227 +1,370 @@
-<!-- meta tags and other links -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpeedsterFx </title>
-  <link rel="icon" type="image/png" href="/images/favicon.png" sizes="16x16">
-  <!-- bootstrap 4  -->
-  <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
-  <!-- fontawesome 5  -->
-  <link rel="stylesheet" href="/css/all.min.css">
-  <!-- line-awesome webfont -->
-  <link rel="stylesheet" href="/css/line-awesome.min.css">
-  <link rel="stylesheet" href="/css/vendor/animate.min.css">
-  <!-- slick slider css -->
-  <link rel="stylesheet" href="/css/vendor/slick.css">
-  <link rel="stylesheet" href="/css/vendor/dots.css">
-  <!-- dashdoard main css -->
-  <link rel="stylesheet" href="/css/main.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Broadtrademining - Isometric Investment Platform</title>
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/icofont.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/lightcase.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="/css/nice-select.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/responsive.css">
 </head>
-  <body>
-    <div class="preloader">
-      <div class="preloader-container">
-        <span class="animated-preloader"></span>
-      </div>
-    </div>
-  
-    <!-- scroll-to-top start -->
-    <div class="scroll-to-top">
-      <span class="scroll-icon">
-        <i class="fa fa-rocket" aria-hidden="true"></i>
-      </span>
-    </div>
-    <!-- scroll-to-top end -->
+<body>
 
-  <div class="full-wh">
-    <!-- STAR ANIMATION -->
-    <div class="bg-animation">
-      <div id='stars'></div>
-      <div id='stars2'></div>
-      <div id='stars3'></div>
-      <div id='stars4'></div>
-    </div><!-- / STAR ANIMATION -->
-  </div>
-  <div class="page-wrapper">
-      <!-- header-section start  -->
-  <header class="header">
-    <div class="header__bottom">
-      <div class="container">
-        <nav class="navbar navbar-expand-xl p-0 align-items-center">
-          <a class="site-logo site-title" href="/"><img src="/images/logo.png" alt="site-logo"></a>
-          <ul class="account-menu mobile-acc-menu">
-            <li class="icon">
-              <a href="/login"><i class="las la-user"></i></a>
-            </li>
-          </ul> 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="menu-toggle"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav main-menu m-auto">
-              <li> <a href="/">Home</a></li>
-              <li> <a href="/about">About Us</a></li>
-              <li> <a href="/plan">Plan</a></li>
-              <li><a href="/dashboard/1">Dashboard</a></li>
-              <!-- <li class="menu_has_children"><a href="#0">Blog</a>
-                <ul class="sub-menu">
-                  <li><a href="blog.html">Blog Posts</a></li>
-                  <li><a href="blog-details.html">Blog Details</a></li>
-                </ul>
-              </li> -->
-              <li class="menu_has_children"><a href="#0">Page</a>
-                <ul class="sub-menu">
-                  <li><a href="error-404.html">Error - 404</a></li>
-                </ul>
-              </li>
-              <li><a href="/contact">Contact</a></li>
-            </ul>
-            <div class="nav-right">
-              <ul class="account-menu ml-3">
-                <li class="icon">
-                  <a href="/login"><i class="las la-user"></i></a>
-                </li>
-              </ul> 
-             <div class="select d-inline-block w-auto ml-xl-3" id="google_translate_element"></div>
+  <!-- preloader start -->
+
+  <!-- preloader end -->
+
+    <!-- signin-area start -->
+    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bdr-radius">
+          <div class="signin-wrapper">
+            <div class="signin-wrapper-header text-center">
+              <div class="logo"><img src="/images/elements/logo-icon.png" alt="image"></div>
+              <h3 class="title">Login with</h3>
+              <p>Welcome back, please sign in below</p>
             </div>
-          </div> 
-        </nav>
-      </div>
-    </div><!-- header__bottom end -->
-  </header>
-  <!-- header-section end  -->
-    
-    <!-- inner hero start -->
-    <section class="inner-hero bg_img" data-background="/images/bg/bg-1.jpeg">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h2 class="page-title">Contact Us</h2>
-            <ul class="page-breadcrumb">
-              <li><a href="/">Home</a></li>
-              <li>Contact</li>
-            </ul>
+            <form class="signin-form">
+              <div class="form-group">
+                <label for="signinEmail">Email*</label>
+                <input type="email" class="form-control" id="signinEmail" placeholder="Enter your Email">
+              </div>
+              <div class="form-group">
+                <label for="signinPass">Password*</label>
+                <input type="password" class="form-control" id="signinPass" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <div class="custom-checkbox">
+                  <input type="checkbox" name="id-1" id="id-1" checked>
+                  <label for="id-1">Remember Password</label>
+                  <span class="checkbox"></span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-hover">Log In</button>
+            </form>
+            <div class="signin-wrapper-footer">
+              <p class="bottom-text">Don’t have an account? <a href="#0" data-toggle="modal" data-target="#signUpModal" data-dismiss="modal" aria-label="Close">Sign Up Now</a></p>
+              <div class="divider"><span>or</span></div>
+
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- inner hero end -->
-
-
-    <!-- contact section start -->
-    <section class="pt-120 pb-120">
-      <div class="container">
-        <div class="contact-wrapper">
-          <div class="row">
-            <div class="col-lg-6 contact-thumb bg_img" data-background="/images/bg/bg-2.jpeg"></div>
-            <div class="col-lg-6 contact-form-wrapper">
-              <h2 class="font-weight-bold">Contact.</h2>
-              <h2 class="font-weight-bold">Get in touch.</h2>
-              <span>Leave us a message</span>
-              <form class="contact-form mt-4">
-                <div class="form-row">
-                  <div class="form-group col-lg-6">
-                    <input type="text" name="contact-name" placeholder="Full Name" class="form-control">
-                  </div>
-                  <div class="form-group col-lg-6">
-                    <input type="email" name="contact-name" placeholder="Email Address" class="form-control">
-                  </div>
-                  <div class="form-group col-lg-12">
-                    <textarea class="form-control" placeholder="Message"></textarea>
-                  </div>
-                  <div class="col-lg-12">
-                    <button type="submit" class="cmn-btn">Send Message</button>
-                  </div>
+    </div>
+    <!-- signin-area end -->
+    
+    <!-- signup-area start -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bdr-radius">
+          <div class="signin-wrapper">
+            <div class="signin-wrapper-header text-center">
+              <div class="logo"><img src="/images/elements/logo-icon.png" alt="image"></div>
+              <h3 class="title">Login with</h3>
+              <p>Welcome back, please sign in below</p>
+            </div>
+            <form class="signin-form">
+              <div class="form-group">
+                <label for="signinEmail">Email*</label>
+                <input type="email" class="form-control" id="signupEmail" placeholder="Enter your Email">
+              </div>
+              <div class="form-group">
+                <label for="signinPass">Password*</label>
+                <input type="password" class="form-control" id="signupPass" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="signinPass">Confirm Password*</label>
+                <input type="password" class="form-control" id="signupRePass" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <div class="custom-checkbox">
+                  <input type="checkbox" name="id-2" id="id-2" checked>
+                  <label for="id-2">I do not want to be kept up to date about relevant investment opportunities, features, and events</label>
+                  <span class="checkbox"></span>
                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-hover">Log In</button>
+            </form>
+            <div class="signin-wrapper-footer">
+              <p class="bottom-text">Already have an account?<a href="#0" data-toggle="modal" data-target="#signInModal" data-dismiss="modal" aria-label="Close">Login</a></p>
+              <div class="divider"><span>or</span></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- signup-area end -->
+  <!--  header-section start  -->
+  <header class="header-section transparent--header header--fixed">
+    <div class="header-top">
+        <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-6 col-md-6">
+            <div class="header-top-left d-flex">
+                <div class="support-part">
+                    <a href="tel:+88016558888454"><i class="fa fa-headphones"></i>Support</a>
+                </div>
+                <div class="email-part">
+                    <a href="/cdn-cgi/l/email-protection#5f363139301f3d3a37303039713c3032"><i class="fa fa-envelope"></i><span class="__cf_email__" data-cfemail="8fe6e1e9e0cfedeae7e0e0e9a1ece0e2">[email&#160;protected]</span></a>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="header-top-right d-flex align-items-center justify-content-end">
+                    <div class="language-part">
+                    <i class="fa fa-globe"></i>
+<div class="select d-inline-block w-auto ml-xl-3" id="google_translate_element"></div>
+                    </div>
+                    <div class="header-cart-count">
+                    <a href="/dashboard">
+                      <i class="fa fa-tachometer"></i>
+                      <span>Dashboard</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+        <nav class="navbar navbar-expand-xl">
+            <a class="site-logo site-title" href="/"><img src="/images/logo2.png" alt="site-logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="menu-toggle"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav main-menu ml-auto">
+                <li class="active menu_has_children"><a href="/">Home</a>
+             
+                </li>
+                <li><a href="/about">about</a></li>
+               
+                
+          
+                <li><a href="/contact">contact us</a></li>
+            </ul>
+              <div class="header-join-part">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">join us</button>
+              </div>
+            </div>
+        </nav>
+        </div>
+    </div><!-- header-bottom end -->
+  </header>
+  <!--  header-section end  -->
+
+  <!-- inner-page-banner-section start -->
+  <section class="inner-page-banner-section gradient-bg">
+    <div class="illustration-img"><img src="/images/inner-page-banner-illustrations/contact.png" alt="image-illustration"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="inner-page-content-area">
+                    <h2 class="page-title">Contact Us</h2>
+                    <nav aria-label="breadcrumb" class="page-header-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- inner-page-banner-section end -->
+
+  <section class="contact-section mt-minus pb-120">
+    <div class="container">
+      <div class="contact-form-area">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="section-header text-center">
+              <span class="section-subtitle">Contact</span>
+              <h2 class="section-title">Get In Touch</h2>
+              <p>Have questions? We don't bite! Just shoot us a message and we'll get back to you as soon as possible!</p>
+            </div>
+          </div>
+          <div class="col-lg-12 contact-form-wrapper">
+            <form class="contact-form" id="contact_form_submit">
+              <div class="row">
+                <div class="col-lg-6">
+                  <input type="text" name="name" id="name" placeholder="Name*">
+                </div>
+                <div class="col-lg-6">
+                  <input type="email" name="email" id="email" placeholder="Email*">
+                </div>
+                <div class="col-lg-6">
+                  <input type="tel" name="phone" id="phone" placeholder="Phone Number*">
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" name="subject" id="subject" placeholder="Company (optional)">
+                </div>
+                <div class="col-lg-12">
+                  <textarea name="message" id="message" placeholder="Message*"></textarea>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <button type="submit" class="btn btn-primary" title="Submit Your Message!">submit now</button>
+                </div>
+              </div>
+            </form>
+            <p class="form-message"></p>
+          </div>
+        </div>
+      </div>
+      <div class="social-links-area pt-120"> 
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="section-header text-center">
+              <span class="section-subtitle">Join The Conversation!</span>
+              <h2 class="section-title">Browse Our Social Pages</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-none-30"> 
+          <div class="col-lg-3 col-sm-6">
+            <div class="social-media-item text-center mb-30">
+              <div class="icon"> 
+                <i class="fa fa-facebook-f"></i>
+              </div>
+              <div class="content">
+                <h3 class="counter">32,334</h3>
+                <p>facebook members</p>
+                <a href="#0" class="join-btn">join!</a>
+              </div>
+            </div>
+          </div><!-- social-media-item end-->
+          <div class="col-lg-3 col-sm-6">
+            <div class="social-media-item text-center mb-30">
+              <div class="icon"> 
+                <i class="fa fa-twitter"></i>
+              </div>
+              <div class="content">
+                <h3 class="counter">32,334</h3>
+                <p>Twitter followers</p>
+                <a href="#0" class="join-btn">join!</a>
+              </div>
+            </div>
+          </div><!-- social-media-item end-->
+          <div class="col-lg-3 col-sm-6">
+            <div class="social-media-item text-center mb-30">
+              <div class="icon"> 
+                <i class="fa fa-instagram"></i>
+              </div>
+              <div class="content">
+                <h3 class="counter">20,150</h3>
+                <p>Instagram subscribers</p>
+                <a href="#0" class="join-btn">join!</a>
+              </div>
+            </div>
+          </div><!-- social-media-item end-->
+          <div class="col-lg-3 col-sm-6">
+            <div class="social-media-item text-center mb-30">
+              <div class="icon"> 
+                <i class="fa fa-paper-plane-o"></i>
+              </div>
+              <div class="content">
+                <h3 class="counter">30,334</h3>
+                <p>Telegram members</p>
+                <a href="#0" class="join-btn">join!</a>
+              </div>
+            </div>
+          </div><!-- social-media-item end-->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer-section start -->
+  <footer class="footer-section">
+    <div class="footer-top bg_img" data-background="/images/footer-bg-3.png">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="section-header text-white text-center">
+              <span class="section-subtitle">Subscribe to Broadtrademining</span>
+              <h2 class="section-title">To Get Exclusive Benefits</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="subscribe-wrapper style--two">
+              <form class="subscribe-form">
+                <input type="text" name="subs_name" id="subs_name" placeholder="Your Email Address">
+                <button type="submit" class="subs-btn">subscribe</button>
               </form>
             </div>
           </div>
-        </div><!-- contact-wrapper end -->
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="footer-widget">
+              <h3 class="widget-title">About Broadtrademining</h3>
+              <ul class="footer-menu-list">
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/dashboard">Manage Your Account</a></li>
+              </ul>
+            </div>
+          </div><!-- footer-widget end -->
+        </div>
+ 
       </div>
-      <div class="container pt-120">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 mb-50">
-            <h2 class="font-weight-bold">Quick</h2>
-            <h2 class="font-weight-bold">Support.</h2>
-            <span>You can get all information</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <p class="copy-right-text">Copyright © 2022.All Rights Reserved By <a href="/">Broadtrademining</a></p>
           </div>
-          <div class="col-lg-10">
-            <div class="row mb-none-30">
-              <div class="col-md-4 col-sm-6 mb-30">
-                <div class="contact-item">
-                  <i class="fas fa-phone-alt"></i>
-                  <h5 class="mt-2">Call Us</h5>
-                  <div class="mt-4">
-                    <p><a href="tel:5454458">+658 4584584</a></p>
-                    <p><a href="tel:5454458">+985 8724584</a></p>
-                  </div>
-                </div><!-- contact-item end -->
-              </div>
-              <div class="col-md-4 col-sm-6 mb-30">
-                <div class="contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <h5 class="mt-2">Mail Us</h5>
-                  <div class="mt-4">
-                    <p><a href="/cdn-cgi/l/email-protection#147071797b5479757d783a777b79"><span class="__cf_email__" data-cfemail="1773727a7857646267677865633974787a">[email&#160;protected]</span></a></p>
-                    <p><a href="/cdn-cgi/l/email-protection#ec88898183ac818d8580c28f8381"><span class="__cf_email__" data-cfemail="aacecfc7c5ead9dfdadac5d8de84c9c5c7">[email&#160;protected]</span></a></p>
-                  </div>
-                </div><!-- contact-item end -->
-              </div>
-              <div class="col-md-4 col-sm-6 mb-30">
-                <div class="contact-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <h5 class="mt-2">Visit Us</h5>
-                  <div class="mt-4">
-                    <p>#65 Street, Melborne 1265, Australia</p>
-                  </div>
-                </div><!-- contact-item end -->
-              </div>
+          <div class="col-lg-6">
+            <div class="card-list text-right">
+              <a href="#0"><img src="/images/icons/card-options/americanexpress.png" alt="image"></a>
+              <a href="#0"><img src="/images/icons/card-options/maestro.png" alt="image"></a>
+              <a href="#0"><img src="/images/icons/card-options/visa.png" alt="image"></a>
+              <a href="#0"><img src="/images/icons/card-options/paypal.png" alt="image"></a>
+              <a href="#0"><img src="/images/icons/card-options/mastercard.png" alt="image"></a>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- contact section end -->
-    
-    <!-- footer section start -->
-<footer class="footer bg_img" data-background="/images/bg/bg-7.jpg">
-  <div class="footer__top">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12 text-center">
-          <a href="#0" class="footer-logo"><img src="/images/logo.png" alt="image"></a>
-          <ul class="footer-short-menu d-flex flex-wrap justify-content-center mt-4">
-            <li><a href="#0">Home</a></li>
-            <li><a href="#0">Privacy & Policy</a></li>
-            <li><a href="#0">Terms & Conditions</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="footer__bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-md-left text-center">
-          <p>© 2022 <a href="/" class="base--color">SpeedsterFx</a>. All rights reserved</p>
-        </div>
-        <div class="col-md-6">
-          <ul class="social-link-list d-flex flex-wrap justify-content-md-end justify-content-center">
-            <li><a href="#0" data-toggle="tooltip" data-placement="top" title="facebook"><i class="lab la-facebook-f"></i></a></li>
-            <li><a href="#0" data-toggle="tooltip" data-placement="top" title="twitter"><i class="lab la-twitter"></i></a></li>
-            <li><a href="#0" data-toggle="tooltip" data-placement="top" title="pinterest"><i class="lab la-pinterest-p"></i></a></li>
-            <li><a href="#0" data-toggle="tooltip" data-placement="top" title="pinterest"><i class="lab la-pinterest-in"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- footer section end -->
-  </div> <!-- page-wrapper end -->
+  </footer>
+  <!-- footer-section end -->
 
+  <!-- scroll-to-top start -->
+  <div class="scroll-to-top">
+    <span class="scroll-icon">
+      <i class="fa fa-rocket"></i>
+    </span>
+  </div>
+  <!-- scroll-to-top end --> 
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.nice-select.js"></script>
+  <script src="/js/lightcase.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.countup.min.js"></script>
+  <script src="/js/jquery.paroller.min.js"></script>
+  <script src="/js/contact.js"></script>
+  <script src="/js/main.js"></script>
   <script>
     function googleTranslateElementInit() {
         new google.translate.TranslateElement(
@@ -231,16 +374,5 @@
     }
 </script>
 <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- jQuery library -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/vendor/jquery-3.5.1.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="/js/vendor/bootstrap.bundle.min.js"></script>
-  <!-- slick slider js -->
-  <script src="/js/vendor/slick.min.js"></script>
-  <script src="/js/vendor/wow.min.js"></script>
-  <script src="/js/contact.js"></script>
-  <!-- dashboard custom js -->
-  <script src="/js/app.js"></script>
-  </body>
-</html> 
+</body>
+</html>

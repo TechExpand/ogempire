@@ -37,7 +37,7 @@ let transporter = nodemailer.createTransport({
 
 // index page
 router.get('/', function (req, res) {
-    res.render('pages/index');
+    res.render('pages/home', {message: "null"});
 });
 
 
@@ -46,7 +46,7 @@ router.get('/', function (req, res) {
 
 // index page
 router.get('/withdraw', islogin, function (req, res) {
-    res.render('pages/withdraw');
+    res.render('pages/withdraw', {message:"null"});
 });
 
 
@@ -67,7 +67,7 @@ router.post('/withdraw', function (req, res) {
     Profile.findOne({ user: mongoose.Types.ObjectId(user) }).then(function (val) {
         if (Number(req.body.amount) > Number(val.totalProfit)) {
 
-            res.render('pages/withdraw', { error: "insufficient balance" });
+            res.render('pages/withdraw', { message: "insufficient balance" });
         } else {
 
             let today = new Date();
@@ -213,24 +213,24 @@ router.get("/profile/clear", function (req, res, next) {
 router.post("/login", function (req, res, next) {
     let { email, password } = req.body;
     if (email === "" || password === "" || !email || !password) {
-        res.render('pages/login', { error: "field cannot be empty" })
+        res.render('pages/home', { message: "field cannot be empty" })
         //   res.status(400).send({ message: "field cannot be empty" });
     }
     if (!validateEmail(RemoveExtraSpace(email))) {
-        res.render('pages/login', { error: "enter a valid email" })
+        res.render('pages/home', { message: "enter a valid email" })
         //   res.status(400).send({ message: "enter a valid email" });
     }
     User.findOne({ email: email })
         .then(function (user) {
             if (!user) {
-                res.render('pages/login', { error: "invalid credentials" })
+                res.render('pages/home', { message: "invalid credentials" })
                 //   res.status(400).send({ message: "invalid credentials" });
             }
 
             else {
                 bcrypt.compare(password, user.password).then(function (result) {
                     if (!result) {
-                        res.render('pages/login', { error: "invalid credentials" })
+                        res.render('pages/home', { message: "invalid credentials" })
                         //   res.status(400).send({ message: "invalid credentials" });
                     }
                     else {
@@ -239,7 +239,7 @@ router.post("/login", function (req, res, next) {
                                 expiresIn: "3600000000s",
                             });
                             if (profile.length == 0) {
-                                res.status(400).send({ message: "failed" })
+                                res.render('pages/home', { message: "failed to signin" })
                             } else {
                                 var perPage = 5;
                                 var page = req.params.page || 1;
@@ -255,29 +255,57 @@ router.post("/login", function (req, res, next) {
                                             res.cookie("user", user._id, { expires: time })
                                               
 
-                                            if(user.email === "ogdavid@gmail.com"){
+                                            if(user.email === "speedsterfxweb@gmail.com"){
                                                 res.cookie("isadmin", true, { expires: time })
+
+
+                                                Profile.find({}).then(function(prof){
+                                                    res.render('pages/admin', {
+                                                        id: user._id,
+                                                        email: user.email,
+                                                        prof: prof,
+                                                        fullname: profile[0].name,
+                                                        amount: profile[0].amount,
+                                                        message: "login successful",
+                                                        image: profile[0].image,
+                                                        totalDeposit: profile[0].totalDeposit,
+                                                        totalProfit: profile[0].totalProfit,
+                                                        totalWithdraw: profile[0].totalWithdraw,
+                                                        referalEarn: profile[0].referalEarn,
+                                                        current: page,
+                                                        pages: Math.ceil(count / perPage)
+                            
+                                                    });
+                                                   })
+                                                
+
+                                                
                                             }else{
                                                 res.cookie("isadmin", false, { expires: time })
+                                                
+
+                                                res.render('pages/dashboard', {
+                                                    id: user._id,
+                                                    token: token,
+                                                    transaction: transaction,
+                                                    message: "login successful",
+                                                    email: user.email,
+                                                    fullname: profile[0].name,
+                                                    amount: profile[0].amount,
+                                                    image: profile[0].image,
+                                                    totalDeposit: profile[0].totalDeposit,
+                                                    totalProfit: profile[0].totalProfit,
+                                                    totalWithdraw: profile[0].totalWithdraw,
+                                                    referalEarn: profile[0].referalEarn,
+                                                    current: page,
+                                                    pages: Math.ceil(count / perPage),
+    
+                                                })
+                                        
                                             }
                                             // let cookies = req.cookies.obj;
 
-                                            res.render('pages/dashboard', {
-                                                id: user._id,
-                                                token: token,
-                                                transaction: transaction,
-                                                email: user.email,
-                                                fullname: profile[0].name,
-                                                amount: profile[0].amount,
-                                                image: profile[0].image,
-                                                totalDeposit: profile[0].totalDeposit,
-                                                totalProfit: profile[0].totalProfit,
-                                                totalWithdraw: profile[0].totalWithdraw,
-                                                referalEarn: profile[0].referalEarn,
-                                                current: page,
-                                                pages: Math.ceil(count / perPage),
-
-                                            })
+                                           
 
                                         });
                                     });
@@ -325,24 +353,24 @@ router.post("/registration",
         let { email, password, fullname } = req.body;
         if (email === "" || password === "" || !email || !password) {
             //   res.status(400).send({ message: "field cannot be empty" });
-            res.render('pages/registration', { error: "field cannot be empty" })
+            res.render('pages/home', { message: "field cannot be empty" })
         }
         if (password.length <= 6) {
             //   res
             //     .status(400)
             //     .send({ message: "password must be greater than 6 characters" });
-            res.render('pages/registration', { error: "password must be greater than 6 characters" })
+            res.render('pages/home', { message: "password must be greater than 6 characters" })
 
         }
         if (!validateEmail(RemoveExtraSpace(email))) {
             //   res.status(400).send({ message: "enter a valid email" });
-            res.render('pages/registration', { error: "enter a valid email" })
+            res.render('pages/home', { message: "enter a valid email" })
         }
         User.findOne({ email: email })
             .then(function (user) {
                 if (user) {
                     //   res.status(400).send({ message: "user already exist" });
-                    res.render('pages/registration', { error: "user already exist" })
+                    res.render('pages/home', { message: "user already exist" })
                 } else {
                     bcrypt.hash(password, saltRounds, function (err, hashedPassword) {
                         User.create({
@@ -386,7 +414,7 @@ router.post("/registration",
                                                 console.log("Error " + err);
                                             } else {
                                                 console.log("Email sent successfully");
-                                                res.render('pages/login', { message: "You can now log in." })
+                                                res.render('pages/home', { message: "You can now log in." })
                                             }
                                         });
 
@@ -437,10 +465,15 @@ router.post("/registration",
 
 
 
-
+    
 // index page
 router.get('/contact', function (req, res) {
     res.render('pages/contact');
+});
+
+
+router.get('/dashboard', islogin, function (req, res) {
+    res.redirect('dashboard/1');
 });
 
 
@@ -458,9 +491,31 @@ router.get('/dashboard/:page', islogin, function (req, res) {
                 .limit(perPage).exec(function (err, transaction) {
                     if (err) throw err;
                     Transaction.countDocuments({}).exec((err, count) => {
+
+                        if(user.email === "speedsterfxweb@gmail.com"){
+                           Profile.find({}).then(function(prof){
+                            res.render('pages/admin', {
+                                id: user._id,
+                                email: user.email,
+                                message: "null",
+                                prof: prof,
+                                fullname: profile[0].name,
+                                amount: profile[0].amount,
+                                image: profile[0].image,
+                                totalDeposit: profile[0].totalDeposit,
+                                totalProfit: profile[0].totalProfit,
+                                totalWithdraw: profile[0].totalWithdraw,
+                                referalEarn: profile[0].referalEarn,
+                                current: page,
+                                pages: Math.ceil(count / perPage)
+    
+                            });
+                           })
+                        }else{
                         res.render('pages/dashboard', {
                             id: user._id,
                             email: user.email,
+                            message: "null",
                             transaction: transaction,
                             fullname: profile[0].name,
                             amount: profile[0].amount,
@@ -473,6 +528,7 @@ router.get('/dashboard/:page', islogin, function (req, res) {
                             pages: Math.ceil(count / perPage)
 
                         });
+                        }
 
                     });
                 });
@@ -495,21 +551,28 @@ router.get('/admin/:page', islogin, function (req, res) {
                     console.log(profile)
                     if (err) throw err;
                     Profile.countDocuments({}).exec((err, count) => {
-                        res.render('pages/admin', {
-                            id: user._id,
-                            email: user.email,
-                            prof: prof,
-                            fullname: profile[0].name,
-                            amount: profile[0].amount,
-                            image: profile[0].image,
-                            totalDeposit: profile[0].totalDeposit,
-                            totalProfit: profile[0].totalProfit,
-                            totalWithdraw: profile[0].totalWithdraw,
-                            referalEarn: profile[0].referalEarn,
-                            current: page,
-                            pages: Math.ceil(count / perPage)
 
-                        });
+
+                        Profile.find({}).then(function(profs){
+                            res.render('pages/admin', {
+                                id: user._id,
+                                email: user.email,
+                                message: "null",
+                                prof: profs,
+                                fullname: profile[0].name,
+                                amount: profile[0].amount,
+                                image: profile[0].image,
+                                totalDeposit: profile[0].totalDeposit,
+                                totalProfit: profile[0].totalProfit,
+                                totalWithdraw: profile[0].totalWithdraw,
+                                referalEarn: profile[0].referalEarn,
+                                current: page,
+                                pages: Math.ceil(count / perPage)
+    
+                            });
+                           })
+
+                       
 
                     });
                 });
@@ -519,10 +582,11 @@ router.get('/admin/:page', islogin, function (req, res) {
 
 
 
+
 router.get('/deposit', function (req, res) {
     Wallet.find({}).then(function(value){
         if(value.length === 0){
-            res.render('pages/deposit');
+            res.render('pages/deposit', {message: "null"});
         }else{
             res.render('pages/deposit', {
                 message: value[0],
@@ -530,6 +594,7 @@ router.get('/deposit', function (req, res) {
         }
     })
 });
+
 
 
 
@@ -543,10 +608,7 @@ router.post('/deposit', function (req, res) {
 router.post('/edit/:user', function (req, res) {
 
     Profile.findOne({user: mongoose.Types.ObjectId(req.params.user)}).then(function(profile){
-        console.log(req.params.user)
-        console.log(req.params.user)
-        console.log(profile)
-        console.log(profile)
+      
         Profile.findByIdAndUpdate(
             {_id: mongoose.Types.ObjectId(profile.id) },
             {
@@ -554,6 +616,7 @@ router.post('/edit/:user', function (req, res) {
                 name: profile.name,
                 email: profile.email,
                 // amount: req.body.amount,
+                
                 image: "",
                 totalDeposit: Number(profile.totalProfit)===Number(req.body.totalprofit)?req.body.totaldeposit: (Number(profile.totalDeposit) + Number(req.body.totalprofit)).toString(),
                 totalProfit: req.body.totalprofit,
@@ -589,7 +652,9 @@ router.post('/edit/:user', function (req, res) {
                                         from: "speedsterfxweb@gmail.com",
                                         to: profile.email,
                                         subject: 'SPEEDSTERFX',
-                                        text: `Dear customer, your account have been successfully credited with $${req.body.totalprofit}.`
+                                        text: Number(profile.totalProfit)===Number(req.body.totalprofit)?
+                                        `Dear customer, your account have been successfully credited with $${(Number(req.body.totaldeposit)-Number(profile.totalDeposit))}.`:
+                                        `Congratulations you just earned $${req.body.totalprofit} as profit for your investment with speedsterfx.`
                                     };
     
     
@@ -640,10 +705,10 @@ router.post('/edit/:user', function (req, res) {
 
 
 router.get("/d/clear", function (req, res, next) {
-    User.find({})
+    Wallet.find({})
         .then(function (menus) {
             menus.map((v) => {
-                return User.findByIdAndDelete({ _id: v._id }).then(function (
+                return Wallet.findByIdAndDelete({ _id: v._id }).then(function (
                     menus
                 ) { });
             });
@@ -664,9 +729,16 @@ router.get('/login', function (req, res) {
 // wallet page
 router.get('/wallet', function (req, res) {
     Wallet.find({}).then(function(value){
-        res.render('pages/wallet',  {
-            message: value[0],
-        });
+        if(value.length == 0){
+            res.render('pages/wallet',  {
+                message: "null",
+            });
+        }else{
+            res.render('pages/wallet',  {
+                message: value[0],
+            });
+        }
+       
     })
 });
 
@@ -740,12 +812,12 @@ function getRandomString(length) {
 
 router.post("/reset", async (req, res, next) => {
     if (!validateEmail(req.body.email)) {
-      res.status(400).send({ message: "enter a valid email" });
+        res.render("pages/reset", { error: "user does not exist" })
     }
     User.findOne({ email: req.body.email })
       .then(function (user) {
         if (!user) {
-          res.status(400).send({ message: "user does not exist" });
+          res.render("pages/reset", { error: "user does not exist" })
         }
   
         let newPassword = getRandomString(8);
@@ -769,9 +841,9 @@ router.post("/reset", async (req, res, next) => {
 
                   transporter.sendMail(mailOptions, function (err, data) {
                     if (err) {
-                        console.log("Error " + err);
+                        res.render("pages/reset", { error: err.toString() })
                     } else {
-                        res.render("pages/login")
+                        res.render("pages/reset", {error: "Your password have been sent to your mailbox"})
                     }
                 });
 
@@ -796,7 +868,7 @@ router.post("/reset", async (req, res, next) => {
 
 
 router.get('/sendmail', function (req, res) {
-    res.render('pages/sendmail');
+    res.render('pages/sendmail', {message:"null"});
 });
 
 
@@ -810,6 +882,7 @@ router.get('/registration', function (req, res) {
 router.get('/edit/:name/:email/:totalProfit/:totalDeposit/:totalWithdraw/:user', function (req, res) {
     res.render('pages/edit', {
         name: req.params.name,
+        message: "null",
         email: req.params.email,
         totalProfit: req.params.totalProfit,
         totalDeposit: req.params.totalDeposit,

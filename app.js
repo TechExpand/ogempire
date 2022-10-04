@@ -14,8 +14,11 @@ app.use(cookieParser());
 
 
 const mongoose = require('mongoose');
+// const uri = "mongodb+srv://ediku126:ediku126@cluster0.flaukda.mongodb.net/?retryWrites=true&w=majority";
 // const uri = "mongodb+srv://matline126:matline126@cluster0.9ymqqhu.mongodb.net/matline?retryWrites=true&w=majority";
-const uri = "mongodb://localhost:27017/speedster"
+
+// mongosh "mongodb+srv://cluster0.flaukda.mongodb.net/myFirstDatabase" --apiVersion 1 --username ediku126
+const uri = "mongodb://localhost:27017/davidfriend"
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
