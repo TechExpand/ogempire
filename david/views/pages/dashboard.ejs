@@ -161,7 +161,7 @@
                 <div class="d-widget d-flex flex-wrap">
                   <div class="col-8">
                     <span class="caption">Total Deposit</span>
-                    <h4 class="currency-amount">$<%= totalDeposit %></h4>
+                    <h4 class="currency-amount">$<%= totalDeposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></h4>
                   </div>
                   <div class="col-4">
                     <div class="icon ml-auto">
@@ -174,7 +174,7 @@
                 <div class="d-widget d-flex flex-wrap">
                   <div class="col-8">
                     <span class="caption">Total Withdraw</span>
-                    <h4 class="currency-amount">$<%= totalWithdraw %></h4>
+                    <h4 class="currency-amount">$<%= totalWithdraw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></h4>
                   </div>
                   <div class="col-4">
                     <div class="icon ml-auto">
@@ -188,7 +188,7 @@
                 <div class="d-widget d-flex flex-wrap">
                   <div class="col-8">
                     <span class="caption">Total Profit</span>
-                    <h4 class="currency-amount">$<%= totalProfit %></h4>
+                    <h4 class="currency-amount">$<%= totalProfit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></h4>
                   </div>
                   <div class="col-4">
                     <div class="icon ml-auto">
@@ -201,7 +201,7 @@
                 <div class="d-widget d-flex flex-wrap">
                   <div class="col-8">
                     <span class="caption">Referral Earnings</span>
-                    <h4 class="currency-amount">$<%= referalEarn %></h4>
+                    <h4 class="currency-amount">$<%= referalEarn.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></h4>
                   </div>
                   <div class="col-4">
                     <div class="icon ml-auto">
